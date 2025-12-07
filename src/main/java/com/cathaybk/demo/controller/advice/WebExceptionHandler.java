@@ -7,6 +7,7 @@ import com.cathaybk.demo.dto.ResponseTemplate;
 import com.cathaybk.demo.exception.DataNotFoundException;
 import com.cathaybk.demo.exception.ErrorInputException;
 import com.cathaybk.demo.exception.InsertFailException;
+import com.cathaybk.demo.exception.DataFormatException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -55,6 +56,19 @@ public class WebExceptionHandler {
         ResponseTemplate<EmptyTranrs> response = createErrorResponse(
                 ReturnCodeAndDescEnum.INSERT_FAIL.getCode(),
                 ReturnCodeAndDescEnum.INSERT_FAIL.getDesc()
+        );
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * 處理資料格式錯誤異常
+     * RETURNCODE: E005
+     */
+    @ExceptionHandler(DataFormatException.class)
+    public ResponseEntity<ResponseTemplate<EmptyTranrs>> handleDataFormatException(DataFormatException e) {
+        ResponseTemplate<EmptyTranrs> response = createErrorResponse(
+                ReturnCodeAndDescEnum.DATA_FORMAT_ERROR.getCode(),
+                ReturnCodeAndDescEnum.DATA_FORMAT_ERROR.getDesc()
         );
         return ResponseEntity.ok(response);
     }

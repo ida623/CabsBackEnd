@@ -1,8 +1,7 @@
 package com.cathaybk.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.io.Serial;
@@ -26,6 +25,7 @@ public class CIFT001TranrqData implements Serializable {
     private String chineseName;
 
     @NotBlank(message = "gender為必填欄位")
+    @Pattern(regexp = "^[mf]$", message = "性別只可填入 m 或 f")
     @JsonProperty("gender")
     private String gender;
 
@@ -34,6 +34,7 @@ public class CIFT001TranrqData implements Serializable {
     private String education;
 
     @NotBlank(message = "zipCode1為必填欄位")
+    @Pattern(regexp = "^\\d+$", message = "郵遞區號只可填入數字")
     @JsonProperty("zipCode1")
     private String zipCode1;
 
@@ -42,10 +43,12 @@ public class CIFT001TranrqData implements Serializable {
     private String address1;
 
     @NotBlank(message = "telephone1為必填欄位")
+    @Pattern(regexp = "^\\d{2}-\\d{7,8}$", message = "電話格式錯誤，應為 XX-XXXXXXX 或 XX-XXXXXXXX")
     @JsonProperty("telephone1")
     private String telephone1;
 
     @NotBlank(message = "zipCode2為必填欄位")
+    @Pattern(regexp = "^\\d+$", message = "郵遞區號只可填入數字")
     @JsonProperty("zipCode2")
     private String zipCode2;
 
@@ -54,13 +57,16 @@ public class CIFT001TranrqData implements Serializable {
     private String address2;
 
     @NotBlank(message = "telephone2為必填欄位")
+    @Pattern(regexp = "^\\d{2}-\\d{7,8}$", message = "電話格式錯誤，應為 XX-XXXXXXX 或 XX-XXXXXXXX")
     @JsonProperty("telephone2")
     private String telephone2;
 
     @NotBlank(message = "mobile為必填欄位")
+    @Pattern(regexp = "^\\d+$", message = "行動電話只可填入數字")
     @JsonProperty("mobile")
     private String mobile;
 
+    @Email(message = "email格式錯誤")
     @JsonProperty("email")
     private String email;
 

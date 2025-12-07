@@ -35,7 +35,7 @@ public class CifQ002SvcImpl implements CifQ002Svc {
 
     // 定義欄位名稱對應
     private static final Map<String, String> COLUMN_MAPPING = new HashMap<>();
-    
+
     static {
         COLUMN_MAPPING.put("ORDER_ID", "orderId");
         COLUMN_MAPPING.put("ID_NUM", "idNum");
@@ -56,15 +56,15 @@ public class CifQ002SvcImpl implements CifQ002Svc {
 
         // 使用 Criteria API 建立動態查詢
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        
+
         // 查詢總筆數
         CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
         Root<CustomerInfo> countRoot = countQuery.from(CustomerInfo.class);
         countQuery.select(cb.count(countRoot));
         countQuery.where(buildPredicates(cb, countRoot, searchData));
-        
+
         Long totalCount = entityManager.createQuery(countQuery).getSingleResult();
-        
+
         if (totalCount == 0) {
             throw new DataNotFoundException("查無資料");
         }
@@ -74,18 +74,18 @@ public class CifQ002SvcImpl implements CifQ002Svc {
         Root<CustomerInfo> dataRoot = dataQuery.from(CustomerInfo.class);
         dataQuery.select(dataRoot);
         dataQuery.where(buildPredicates(cb, dataRoot, searchData));
-        
+
         // 處理排序
         dataQuery.orderBy(buildOrder(cb, dataRoot, tranrq.getSortInfo()));
-        
+
         // 執行分頁查詢
         int pageNumber = tranrq.getPage().getPageNumber();
         int pageSize = tranrq.getPage().getPageSize();
-        
+
         TypedQuery<CustomerInfo> typedQuery = entityManager.createQuery(dataQuery);
         typedQuery.setFirstResult((pageNumber - 1) * pageSize);
         typedQuery.setMaxResults(pageSize);
-        
+
         List<CustomerInfo> resultList = typedQuery.getResultList();
 
         // 轉換為 DTO
@@ -155,14 +155,9 @@ public class CifQ002SvcImpl implements CifQ002Svc {
      * 建立動態排序
      */
     private Order buildOrder(CriteriaBuilder cb, Root<CustomerInfo> root, SortInfo sortInfo) {
-        // 預設排序：ORDER_ID DESC
-        if (sortInfo == null || StringUtils.isBlank(sortInfo.getSortColumn())) {
-            return cb.desc(root.get("orderId"));
-        }
-
-        // 轉換欄位名稱
+        // 轉換欄位名稱（sortInfo 必填，不會是 null）
         String fieldName = COLUMN_MAPPING.getOrDefault(sortInfo.getSortColumn().toUpperCase(), "orderId");
-        
+
         // 判斷排序方向
         if ("ASC".equalsIgnoreCase(sortInfo.getSortBy())) {
             return cb.asc(root.get(fieldName));

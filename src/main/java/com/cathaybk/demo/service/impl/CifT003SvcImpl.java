@@ -4,6 +4,7 @@ import com.cathaybk.demo.common.ReturnCodeAndDescEnum;
 import com.cathaybk.demo.dto.*;
 import com.cathaybk.demo.entity.CustomerInfo;
 import com.cathaybk.demo.exception.DataNotFoundException;
+import com.cathaybk.demo.exception.DeleteFailException;
 import com.cathaybk.demo.repository.CustomerInfoRepository;
 import com.cathaybk.demo.service.CifT003Svc;
 import jakarta.transaction.Transactional;
@@ -27,7 +28,7 @@ public class CifT003SvcImpl implements CifT003Svc {
 
         CIFT003Tranrq tranrq = request.getTranrq();
 
-        // 查詢客戶資料是否存在
+        // 1. 查詢客戶資料是否存在
         CustomerInfo customerInfo = customerInfoRepository.findById(tranrq.getOrderId())
                 .orElse(null);
 
@@ -35,10 +36,14 @@ public class CifT003SvcImpl implements CifT003Svc {
             throw new DataNotFoundException("查無資料");
         }
 
-        // 刪除資料
-        customerInfoRepository.delete(customerInfo);
+        // 2. 刪除資料（加入錯誤處理）
+        try {
+            customerInfoRepository.delete(customerInfo);
+        } catch (Exception e) {
+            throw new DeleteFailException("刪除失敗");
+        }
 
-        // 建立 ResponseTemplate
+        // 3. 建立成功回應
         ResponseTemplate<EmptyTranrs> response = new ResponseTemplate<>();
         HEADER header = new HEADER();
         header.setMsgid(request.getMwheader().getMsgid());

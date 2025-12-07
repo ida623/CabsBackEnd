@@ -4,6 +4,7 @@ import com.cathaybk.demo.common.ReturnCodeAndDescEnum;
 import com.cathaybk.demo.dto.*;
 import com.cathaybk.demo.entity.CustomerInfo;
 import com.cathaybk.demo.exception.DataNotFoundException;
+import com.cathaybk.demo.exception.UpdateFailException;
 import com.cathaybk.demo.repository.CustomerInfoRepository;
 import com.cathaybk.demo.service.CifT002Svc;
 import jakarta.transaction.Transactional;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * XXA-C-CIFT002 修改客戶資料
@@ -28,7 +30,7 @@ public class CifT002SvcImpl implements CifT002Svc {
         CIFT002Tranrq tranrq = request.getTranrq();
         CIFT002TranrqData data = tranrq.getData();
 
-        // 查詢客戶資料是否存在
+        // 1. 查詢客戶資料是否存在
         CustomerInfo customerInfo = customerInfoRepository.findById(data.getOrderId())
                 .orElse(null);
 
@@ -36,7 +38,15 @@ public class CifT002SvcImpl implements CifT002Svc {
             throw new DataNotFoundException("查無資料");
         }
 
-        // 更新資料
+        // 2. 如果要修改身份證號，檢查新的身份證號是否已被其他人使用
+        if (!customerInfo.getIdNum().equals(data.getIdNum())) {
+            List<CustomerInfo> existingCustomers = customerInfoRepository.findByIdNum(data.getIdNum());
+            if (!existingCustomers.isEmpty()) {
+                throw new UpdateFailException("更新失敗：身份證號已被其他客戶使用");
+            }
+        }
+
+        // 3. 更新資料
         customerInfo.setIdNum(data.getIdNum());
         customerInfo.setChineseName(data.getChineseName());
         customerInfo.setGender(data.getGender());
@@ -51,10 +61,14 @@ public class CifT002SvcImpl implements CifT002Svc {
         customerInfo.setEmail(data.getEmail());
         customerInfo.setYear(data.getYear());
 
-        // JPA 會自動更新（因為在 @Transactional 內）
-        customerInfoRepository.save(customerInfo);
+        // 4. 儲存更新（加入錯誤處理）
+        try {
+            customerInfoRepository.save(customerInfo);
+        } catch (Exception e) {
+            throw new UpdateFailException("更新失敗");
+        }
 
-        // 建立 ResponseTemplate
+        // 5. 建立成功回應
         ResponseTemplate<EmptyTranrs> response = new ResponseTemplate<>();
         HEADER header = new HEADER();
         header.setMsgid(request.getMwheader().getMsgid());
