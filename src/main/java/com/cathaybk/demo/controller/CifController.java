@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/cif")
+@CrossOrigin("http://localhost:4200")
 public class CifController {
 
     @Autowired
