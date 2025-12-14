@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "TB_CUSTOMER_INFO")
+// TODO Entity命名規範建議: CustomerInfoEntity
 public class CustomerInfo {
 
     /**
@@ -19,7 +20,7 @@ public class CustomerInfo {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_order_seq")
     @SequenceGenerator(name = "customer_order_seq", sequenceName = "SEQ_CUSTOMER_ORDER_ID", allocationSize = 1)
     @Column(name = "ORDER_ID")
-    private Integer orderId;
+    private Long orderId;
 
     /**
      * 身份證號
