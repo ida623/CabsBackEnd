@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 // TODO 使用 @Data = @ToString、@EqualsAndHashCode、@Getter、@Setter 和 @RequiredArgsConstructor
 @Data
-public class MsgCodeId implements Serializable {
+public class MsgCodeIdEntity implements Serializable {
 
     private String msgCode;
     private String msgOptionSerno;

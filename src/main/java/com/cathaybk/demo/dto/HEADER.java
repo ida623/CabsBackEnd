@@ -2,7 +2,9 @@ package com.cathaybk.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,6 +13,8 @@ import java.io.Serializable;
  * EDU_C_CUSTQ001 根據客戶編號查詢客戶
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class HEADER implements Serializable {
 
     @Serial

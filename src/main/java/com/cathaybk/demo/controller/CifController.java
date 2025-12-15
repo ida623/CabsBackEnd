@@ -4,7 +4,7 @@ import com.cathaybk.demo.dto.*;
 import com.cathaybk.demo.exception.DataNotFoundException;
 import com.cathaybk.demo.exception.InsertFailException;
 import com.cathaybk.demo.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,28 +13,16 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api/cif")
 @CrossOrigin("http://localhost:4200")
+@RequiredArgsConstructor // TODO 統一 RequiredArgsConstructor 取代 @Autowired
 public class CifController {
 
-    @Autowired
-    private CifQ001Svc cifQ001Svc;
-
-    @Autowired
-    private CifQ002Svc cifQ002Svc;
-
-    @Autowired
-    private CifQ003Svc cifQ003Svc;
-
-    @Autowired
-    private CifQ004Svc cifQ004Svc;
-
-    @Autowired
-    private CifT001Svc cifT001Svc;
-
-    @Autowired
-    private CifT002Svc cifT002Svc;
-
-    @Autowired
-    private CifT003Svc cifT003Svc;
+    private final CIFQ001Svc cifQ001Svc;
+    private final CIFQ002Svc cifQ002Svc;
+    private final CIFQ003Svc cifQ003Svc;
+    private final CIFQ004Svc cifQ004Svc;
+    private final CIFT001Svc cifT001Svc;
+    private final CIFT002Svc cifT002Svc;
+    private final CIFT003Svc cifT003Svc;
 
     @PostMapping("/getOne")
     public ResponseTemplate<CIFQ001Tranrs> getOne(@Validated @RequestBody RequestTemplate<CIFQ001Tranrq> request) throws DataNotFoundException, IOException {

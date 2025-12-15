@@ -18,5 +18,5 @@ public class CIFT003Tranrq implements Serializable {
 
     @NotNull(message = "orderId為必填欄位")
     @JsonProperty("orderId")
-    private Integer orderId;
+    private Long orderId;
 }

@@ -8,6 +8,6 @@ import com.cathaybk.demo.exception.DataNotFoundException;
 
 import java.io.IOException;
 
-public interface CifQ002Svc {
+public interface CIFQ002Svc {
     ResponseTemplate<CIFQ002Tranrs> filter(RequestTemplate<CIFQ002Tranrq> request) throws DataNotFoundException, IOException;
 }

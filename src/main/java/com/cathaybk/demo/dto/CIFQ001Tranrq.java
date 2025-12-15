@@ -8,7 +8,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * XXA-C-CIFQ001 根據orderId查詢客戶
+ * XXA-C-CIFQ001 根據orderId查詢
  */
 @Data
 public class CIFQ001Tranrq implements Serializable {
@@ -21,5 +21,6 @@ public class CIFQ001Tranrq implements Serializable {
      */
     @NotNull(message = "orderId為必填欄位")
     @JsonProperty("orderId")
-    private Integer orderId;
+    private Long orderId; // TODO 流水號 建議接 Long，可以接更長的數字
+    // Integer a = 7; Long b = 7L;
 }

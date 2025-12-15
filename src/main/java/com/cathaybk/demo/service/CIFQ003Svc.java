@@ -6,8 +6,6 @@ import com.cathaybk.demo.dto.RequestTemplate;
 import com.cathaybk.demo.dto.ResponseTemplate;
 import com.cathaybk.demo.exception.InsertFailException;
 
-import java.io.IOException;
-
-public interface CifQ003Svc {
-    ResponseTemplate<EmptyTranrs> checkId(RequestTemplate<CIFQ003Tranrq> request) throws InsertFailException, IOException;
+public interface CIFQ003Svc {
+    ResponseTemplate<EmptyTranrs> checkId(RequestTemplate<CIFQ003Tranrq> request) throws InsertFailException;
 }

@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "TB_COMMCODE")
-@IdClass(MsgCodeId.class)
-public class MsgCode {
+@IdClass(MsgCodeIdEntity.class)
+public class MsgCodeEntity {
 
     /**
      * 代碼

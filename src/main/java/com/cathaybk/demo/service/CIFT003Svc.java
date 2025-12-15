@@ -6,8 +6,6 @@ import com.cathaybk.demo.dto.RequestTemplate;
 import com.cathaybk.demo.dto.ResponseTemplate;
 import com.cathaybk.demo.exception.DataNotFoundException;
 
-import java.io.IOException;
-
-public interface CifT003Svc {
-    ResponseTemplate<EmptyTranrs> deleteInfo(RequestTemplate<CIFT003Tranrq> request) throws DataNotFoundException, IOException;
+public interface CIFT003Svc {
+    ResponseTemplate<EmptyTranrs> deleteInfo(RequestTemplate<CIFT003Tranrq> request) throws DataNotFoundException;
 }

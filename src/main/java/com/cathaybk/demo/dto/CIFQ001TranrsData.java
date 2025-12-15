@@ -16,7 +16,7 @@ public class CIFQ001TranrsData implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("orderId")
-    private Integer orderId;
+    private Long orderId;
 
     @JsonProperty("idNum")
     private String idNum;
