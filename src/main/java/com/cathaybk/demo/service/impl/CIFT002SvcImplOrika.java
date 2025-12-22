@@ -6,24 +6,43 @@ import com.cathaybk.demo.entity.CustomerInfoEntity;
 import com.cathaybk.demo.exception.DataNotFoundException;
 import com.cathaybk.demo.exception.UpdateFailException;
 import com.cathaybk.demo.repository.CustomerInfoRepository;
-import com.cathaybk.demo.service.CIFT002Svc;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.cathaybk.demo.service.CIFT002SvcOrika;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+import ma.glasnost.orika.impl.generator.EclipseJdtCompilerStrategy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
-public class CIFT002SvcImpl implements CIFT002Svc {
+public class CIFT002SvcImplOrika implements CIFT002SvcOrika {
 
     private final CustomerInfoRepository customerInfoRepository;
-    private final ObjectMapper objectMapper;
+    private final MapperFacade orikaMapper;
+
+    public CIFT002SvcImplOrika(CustomerInfoRepository customerInfoRepository) {
+        this.customerInfoRepository = customerInfoRepository;
+
+        // 初始化 Orika Mapper
+        MapperFactory factory = new DefaultMapperFactory.Builder()
+                .compilerStrategy(new EclipseJdtCompilerStrategy())  // 加上這一行
+                .useBuiltinConverters(false)
+                .mapNulls(false)  // 不映射 null 值
+                .build();
+
+        // 註冊映射關係
+        factory.classMap(CIFT002TranrqData.class, CustomerInfoEntity.class)
+                .byDefault()
+                .register();
+
+        this.orikaMapper = factory.getMapperFacade();
+    }
 
     @Override
     @Transactional(rollbackOn = Exception.class)
-    public ResponseTemplate<EmptyTranrs> editInfo(RequestTemplate<CIFT002Tranrq> request) throws DataNotFoundException {
+    public ResponseTemplate<EmptyTranrs> editInfoOrika(RequestTemplate<CIFT002Tranrq> request) throws DataNotFoundException {
 
         CIFT002Tranrq tranrq = request.getTranrq();
         CIFT002TranrqData data = tranrq.getData();
@@ -40,13 +59,8 @@ public class CIFT002SvcImpl implements CIFT002Svc {
             }
         }
 
-        // 使用 readerForUpdating 進行部分更新（會跳過 null 值）
-        try {
-            customerInfoEntity = objectMapper.readerForUpdating(customerInfoEntity)
-                    .readValue(objectMapper.writeValueAsString(data));
-        } catch (Exception e) {
-            throw new RuntimeException("Mapping 失敗", e);
-        }
+        // 使用 Orika 進行映射更新
+        orikaMapper.map(data, customerInfoEntity);
 
         // 執行更新
         try {

@@ -5,9 +5,9 @@ import com.cathaybk.demo.dto.*;
 import com.cathaybk.demo.entity.CustomerInfoEntity;
 import com.cathaybk.demo.exception.DataNotFoundException;
 import com.cathaybk.demo.exception.UpdateFailException;
+import com.cathaybk.demo.mapper.CustomerInfoMapper;
 import com.cathaybk.demo.repository.CustomerInfoRepository;
-import com.cathaybk.demo.service.CIFT002Svc;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.cathaybk.demo.service.CIFT002SvcMapStruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,14 +16,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CIFT002SvcImpl implements CIFT002Svc {
+public class CIFT002SvcImplMapStruct implements CIFT002SvcMapStruct {
 
     private final CustomerInfoRepository customerInfoRepository;
-    private final ObjectMapper objectMapper;
+    private final CustomerInfoMapper customerInfoMapper;
 
     @Override
     @Transactional(rollbackOn = Exception.class)
-    public ResponseTemplate<EmptyTranrs> editInfo(RequestTemplate<CIFT002Tranrq> request) throws DataNotFoundException {
+    public ResponseTemplate<EmptyTranrs> editInfoMapStruct(RequestTemplate<CIFT002Tranrq> request) throws DataNotFoundException {
 
         CIFT002Tranrq tranrq = request.getTranrq();
         CIFT002TranrqData data = tranrq.getData();
@@ -40,13 +40,8 @@ public class CIFT002SvcImpl implements CIFT002Svc {
             }
         }
 
-        // 使用 readerForUpdating 進行部分更新（會跳過 null 值）
-        try {
-            customerInfoEntity = objectMapper.readerForUpdating(customerInfoEntity)
-                    .readValue(objectMapper.writeValueAsString(data));
-        } catch (Exception e) {
-            throw new RuntimeException("Mapping 失敗", e);
-        }
+        // 使用 MapStruct 進行映射更新（會忽略 null 值）
+        customerInfoMapper.updateEntityFromData(data, customerInfoEntity);
 
         // 執行更新
         try {

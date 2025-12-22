@@ -6,24 +6,23 @@ import com.cathaybk.demo.entity.CustomerInfoEntity;
 import com.cathaybk.demo.exception.DataNotFoundException;
 import com.cathaybk.demo.exception.UpdateFailException;
 import com.cathaybk.demo.repository.CustomerInfoRepository;
-import com.cathaybk.demo.service.CIFT002Svc;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.cathaybk.demo.service.CIFT002SvcSpringBeanUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CIFT002SvcImpl implements CIFT002Svc {
+public class CIFT002SvcImplSpringBeanUtils implements CIFT002SvcSpringBeanUtils {
 
     private final CustomerInfoRepository customerInfoRepository;
-    private final ObjectMapper objectMapper;
 
     @Override
     @Transactional(rollbackOn = Exception.class)
-    public ResponseTemplate<EmptyTranrs> editInfo(RequestTemplate<CIFT002Tranrq> request) throws DataNotFoundException {
+    public ResponseTemplate<EmptyTranrs> editInfoSpringBeanUtils(RequestTemplate<CIFT002Tranrq> request) throws DataNotFoundException {
 
         CIFT002Tranrq tranrq = request.getTranrq();
         CIFT002TranrqData data = tranrq.getData();
@@ -40,13 +39,11 @@ public class CIFT002SvcImpl implements CIFT002Svc {
             }
         }
 
-        // 使用 readerForUpdating 進行部分更新（會跳過 null 值）
-        try {
-            customerInfoEntity = objectMapper.readerForUpdating(customerInfoEntity)
-                    .readValue(objectMapper.writeValueAsString(data));
-        } catch (Exception e) {
-            throw new RuntimeException("Mapping 失敗", e);
-        }
+        // 使用 Spring BeanUtils 進行映射更新
+        // Spring BeanUtils 的 copyProperties 會複製 null 值，需要額外處理
+        // 使用 getNullPropertyNames 來獲取 null 屬性並忽略它們
+        String[] nullPropertyNames = getNullPropertyNames(data);
+        BeanUtils.copyProperties(data, customerInfoEntity, nullPropertyNames);
 
         // 執行更新
         try {
@@ -65,5 +62,19 @@ public class CIFT002SvcImpl implements CIFT002Svc {
         response.setTranrs(new EmptyTranrs());
 
         return response;
+    }
+
+    // 輔助方法：獲取 null 屬性名稱
+    private String[] getNullPropertyNames(Object source) {
+        final org.springframework.beans.BeanWrapper src = new org.springframework.beans.BeanWrapperImpl(source);
+        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+
+        java.util.Set<String> emptyNames = new java.util.HashSet<>();
+        for (java.beans.PropertyDescriptor pd : pds) {
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) emptyNames.add(pd.getName());
+        }
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
     }
 }

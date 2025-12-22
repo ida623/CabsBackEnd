@@ -6,24 +6,23 @@ import com.cathaybk.demo.entity.CustomerInfoEntity;
 import com.cathaybk.demo.exception.DataNotFoundException;
 import com.cathaybk.demo.exception.UpdateFailException;
 import com.cathaybk.demo.repository.CustomerInfoRepository;
-import com.cathaybk.demo.service.CIFT002Svc;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.cathaybk.demo.service.CIFT002SvcApacheBeanUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CIFT002SvcImpl implements CIFT002Svc {
+public class CIFT002SvcImplApacheBeanUtils implements CIFT002SvcApacheBeanUtils {
 
     private final CustomerInfoRepository customerInfoRepository;
-    private final ObjectMapper objectMapper;
 
     @Override
     @Transactional(rollbackOn = Exception.class)
-    public ResponseTemplate<EmptyTranrs> editInfo(RequestTemplate<CIFT002Tranrq> request) throws DataNotFoundException {
+    public ResponseTemplate<EmptyTranrs> editInfoApacheBeanUtils(RequestTemplate<CIFT002Tranrq> request) throws DataNotFoundException {
 
         CIFT002Tranrq tranrq = request.getTranrq();
         CIFT002TranrqData data = tranrq.getData();
@@ -40,10 +39,10 @@ public class CIFT002SvcImpl implements CIFT002Svc {
             }
         }
 
-        // 使用 readerForUpdating 進行部分更新（會跳過 null 值）
+        // 使用 Apache BeanUtils 的 populate 進行映射更新
+        // populate 會跳過 null 值
         try {
-            customerInfoEntity = objectMapper.readerForUpdating(customerInfoEntity)
-                    .readValue(objectMapper.writeValueAsString(data));
+            BeanUtils.populate(customerInfoEntity, BeanUtils.describe(data));
         } catch (Exception e) {
             throw new RuntimeException("Mapping 失敗", e);
         }
