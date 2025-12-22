@@ -1,0 +1,1120 @@
+[
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testApacheBeanUtils",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.08690709401102356,
+            "scoreError" : 0.0062388978135785415,
+            "scoreConfidence" : [
+                0.08066819619744502,
+                0.0931459918246021
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.08212031133593005,
+                "50.0" : 0.08648068684535967,
+                "90.0" : 0.09181311300643792,
+                "95.0" : 0.09183701446217704,
+                "99.0" : 0.09183701446217704,
+                "99.9" : 0.09183701446217704,
+                "99.99" : 0.09183701446217704,
+                "99.999" : 0.09183701446217704,
+                "99.9999" : 0.09183701446217704,
+                "100.0" : 0.09183701446217704
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    0.09183701446217704,
+                    0.09159799990478586,
+                    0.08731704831003664,
+                    0.09094678065990988,
+                    0.09093335947909915
+                ],
+                [
+                    0.08234666980538063,
+                    0.08212031133593005,
+                    0.08248364372405109,
+                    0.08564432538068269,
+                    0.08384378704818239
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testMapStruct",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 101.3156757906157,
+            "scoreError" : 97.31602519431557,
+            "scoreConfidence" : [
+                3.9996505963001283,
+                198.63170098493129
+            ],
+            "scorePercentiles" : {
+                "0.0" : 4.748088614827341,
+                "50.0" : 92.39910000831297,
+                "90.0" : 179.01247836439038,
+                "95.0" : 179.49345068218628,
+                "99.0" : 179.49345068218628,
+                "99.9" : 179.49345068218628,
+                "99.99" : 179.49345068218628,
+                "99.999" : 179.49345068218628,
+                "99.9999" : 179.49345068218628,
+                "100.0" : 179.49345068218628
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    179.49345068218628,
+                    174.68372750422733,
+                    140.8077999403548,
+                    167.3854173816423,
+                    90.85240438179532
+                ],
+                [
+                    79.70574756709024,
+                    4.748088614827341,
+                    4.83694324350145,
+                    76.69738295570143,
+                    93.94579563483062
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testModelMapper",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.13649525988735348,
+            "scoreError" : 0.010378987760728133,
+            "scoreConfidence" : [
+                0.12611627212662535,
+                0.1468742476480816
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.12041182373912003,
+                "50.0" : 0.13741013647957734,
+                "90.0" : 0.14409940372041272,
+                "95.0" : 0.144180479966302,
+                "99.0" : 0.144180479966302,
+                "99.9" : 0.144180479966302,
+                "99.99" : 0.144180479966302,
+                "99.999" : 0.144180479966302,
+                "99.9999" : 0.144180479966302,
+                "100.0" : 0.144180479966302
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    0.13726042873871022,
+                    0.1433697175074091,
+                    0.144180479966302,
+                    0.12041182373912003,
+                    0.13530619045012227
+                ],
+                [
+                    0.1409746154257522,
+                    0.13755984422044448,
+                    0.13089714540822692,
+                    0.13864151093606672,
+                    0.13635084248138093
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testObjectMapper",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 1.163881573850356,
+            "scoreError" : 0.28820138711570514,
+            "scoreConfidence" : [
+                0.8756801867346509,
+                1.4520829609660613
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.8444376537171127,
+                "50.0" : 1.2117393776102658,
+                "90.0" : 1.343969671195669,
+                "95.0" : 1.3441897110446281,
+                "99.0" : 1.3441897110446281,
+                "99.9" : 1.3441897110446281,
+                "99.99" : 1.3441897110446281,
+                "99.999" : 1.3441897110446281,
+                "99.9999" : 1.3441897110446281,
+                "100.0" : 1.3441897110446281
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    1.1036410326189947,
+                    0.8684466302522463,
+                    1.0912960442216861,
+                    1.12000372705427,
+                    0.8444376537171127
+                ],
+                [
+                    1.303475028166262,
+                    1.304047175187447,
+                    1.3172894236858772,
+                    1.3419893125550362,
+                    1.3441897110446281
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testOrika",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 2.7968977521021054,
+            "scoreError" : 0.8265727726637438,
+            "scoreConfidence" : [
+                1.9703249794383617,
+                3.623470524765849
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.9326189947553076,
+                "50.0" : 2.8222880275799387,
+                "90.0" : 3.5177916526862076,
+                "95.0" : 3.5367617922832686,
+                "99.0" : 3.5367617922832686,
+                "99.9" : 3.5367617922832686,
+                "99.99" : 3.5367617922832686,
+                "99.999" : 3.5367617922832686,
+                "99.9999" : 3.5367617922832686,
+                "100.0" : 3.5367617922832686
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    3.053733203944702,
+                    2.7424043641532596,
+                    2.7211300025949217,
+                    2.9021716910066173,
+                    2.446087756797297
+                ],
+                [
+                    1.9964917162597084,
+                    1.9326189947553076,
+                    3.3470603963126586,
+                    3.2905176029133107,
+                    3.5367617922832686
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testSpringBeanUtils",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 1.3853336405357974,
+            "scoreError" : 0.14687931652061545,
+            "scoreConfidence" : [
+                1.238454324015182,
+                1.532212957056413
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.2201418850038248,
+                "50.0" : 1.3593394090099609,
+                "90.0" : 1.5351487250083187,
+                "95.0" : 1.53861385769424,
+                "99.0" : 1.53861385769424,
+                "99.9" : 1.53861385769424,
+                "99.99" : 1.53861385769424,
+                "99.999" : 1.53861385769424,
+                "99.9999" : 1.53861385769424,
+                "100.0" : 1.53861385769424
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    1.53861385769424,
+                    1.4069150223658793,
+                    1.3314474550327744,
+                    1.2201418850038248,
+                    1.3465523253290739
+                ],
+                [
+                    1.3125960715207639,
+                    1.4756268786556068,
+                    1.5039625308350257,
+                    1.372126492690848,
+                    1.3453538862299363
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testApacheBeanUtils",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 13.138972587282982,
+            "scoreError" : 3.8948911838974616,
+            "scoreConfidence" : [
+                9.24408140338552,
+                17.033863771180442
+            ],
+            "scorePercentiles" : {
+                "0.0" : 10.435823718316321,
+                "50.0" : 12.610760657829296,
+                "90.0" : 18.304858211030076,
+                "95.0" : 18.640943307203624,
+                "99.0" : 18.640943307203624,
+                "99.9" : 18.640943307203624,
+                "99.99" : 18.640943307203624,
+                "99.999" : 18.640943307203624,
+                "99.9999" : 18.640943307203624,
+                "100.0" : 18.640943307203624
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    18.640943307203624,
+                    10.828136277942365,
+                    15.280092345468132,
+                    10.435823718316321,
+                    14.224044286239986
+                ],
+                [
+                    12.589221660631663,
+                    11.227214055469746,
+                    10.954875224758895,
+                    12.632299655026928,
+                    14.577075341772153
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testMapStruct",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.11415833217230775,
+            "scoreError" : 0.45071423605583466,
+            "scoreConfidence" : [
+                -0.3365559038835269,
+                0.5648725682281424
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.011279301833972358,
+                "50.0" : 0.015512696933623494,
+                "90.0" : 0.8701976053047388,
+                "95.0" : 0.9620485065261044,
+                "99.0" : 0.9620485065261044,
+                "99.9" : 0.9620485065261044,
+                "99.99" : 0.9620485065261044,
+                "99.999" : 0.9620485065261044,
+                "99.9999" : 0.9620485065261044,
+                "100.0" : 0.9620485065261044
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    0.043539494312445054,
+                    0.9620485065261044,
+                    0.03647545828197544,
+                    0.011279301833972358,
+                    0.013216774547721273
+                ],
+                [
+                    0.013127036801579183,
+                    0.014666629612297135,
+                    0.014497507913795766,
+                    0.016373847638237356,
+                    0.016358764254949854
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testModelMapper",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 6.931960239604868,
+            "scoreError" : 0.7147793934757674,
+            "scoreConfidence" : [
+                6.2171808461291,
+                7.646739633080635
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6.033878736046093,
+                "50.0" : 7.072905134178804,
+                "90.0" : 7.409775016481421,
+                "95.0" : 7.411774427385219,
+                "99.0" : 7.411774427385219,
+                "99.9" : 7.411774427385219,
+                "99.99" : 7.411774427385219,
+                "99.999" : 7.411774427385219,
+                "99.9999" : 7.411774427385219,
+                "100.0" : 7.411774427385219
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    7.13713193639048,
+                    7.008678331967127,
+                    7.330787646505386,
+                    7.260654913094361,
+                    7.411774427385219
+                ],
+                [
+                    7.391780318347241,
+                    6.033878736046093,
+                    6.625307343954964,
+                    6.756503289562381,
+                    6.363105452795421
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testObjectMapper",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.8022412774809468,
+            "scoreError" : 0.09299943659979593,
+            "scoreConfidence" : [
+                0.7092418408811508,
+                0.8952407140807427
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.7354337164228157,
+                "50.0" : 0.8021047479099532,
+                "90.0" : 0.8799133935454999,
+                "95.0" : 0.8820426908013406,
+                "99.0" : 0.8820426908013406,
+                "99.9" : 0.8820426908013406,
+                "99.99" : 0.8820426908013406,
+                "99.999" : 0.8820426908013406,
+                "99.9999" : 0.8820426908013406,
+                "100.0" : 0.8820426908013406
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    0.7382644980302508,
+                    0.7435539377271708,
+                    0.7428434250267095,
+                    0.7354337164228157,
+                    0.7662044730699509
+                ],
+                [
+                    0.8607497182429338,
+                    0.8380050227499556,
+                    0.8604249710685354,
+                    0.8548903216698049,
+                    0.8820426908013406
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testOrika",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.33093263313308646,
+            "scoreError" : 0.03721066835656096,
+            "scoreConfidence" : [
+                0.2937219647765255,
+                0.3681433014896474
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.3007693561752739,
+                "50.0" : 0.32284458501885865,
+                "90.0" : 0.3700764392441076,
+                "95.0" : 0.37101433029547287,
+                "99.0" : 0.37101433029547287,
+                "99.9" : 0.37101433029547287,
+                "99.99" : 0.37101433029547287,
+                "99.999" : 0.37101433029547287,
+                "99.9999" : 0.37101433029547287,
+                "100.0" : 0.37101433029547287
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    0.36163541978182007,
+                    0.33787128801362004,
+                    0.32401454980115185,
+                    0.30688616275376535,
+                    0.3199880489110208
+                ],
+                [
+                    0.32167462023656546,
+                    0.3007693561752739,
+                    0.3562600379393382,
+                    0.37101433029547287,
+                    0.309212517422836
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testSpringBeanUtils",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.9547981880925557,
+            "scoreError" : 0.553146081351624,
+            "scoreConfidence" : [
+                0.40165210674093166,
+                1.5079442694441796
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.6706906403387163,
+                "50.0" : 0.814111070593005,
+                "90.0" : 1.7803061477059694,
+                "95.0" : 1.8361482499425756,
+                "99.0" : 1.8361482499425756,
+                "99.9" : 1.8361482499425756,
+                "99.99" : 1.8361482499425756,
+                "99.999" : 1.8361482499425756,
+                "99.9999" : 1.8361482499425756,
+                "100.0" : 1.8361482499425756
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    1.8361482499425756,
+                    1.2777272275765108,
+                    0.6706906403387163,
+                    0.682075569358178,
+                    0.7303199802097016
+                ],
+                [
+                    0.8371026510606657,
+                    0.9801034039320822,
+                    1.0488331557502857,
+                    0.7911194901253443,
+                    0.6938615126314961
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testApacheBeanUtils",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 1689.6664999999998,
+            "scoreError" : 2988.3133992243083,
+            "scoreConfidence" : [
+                -1298.6468992243085,
+                4677.979899224309
+            ],
+            "scorePercentiles" : {
+                "0.0" : 356.791,
+                "50.0" : 949.229,
+                "90.0" : 6272.975000000001,
+                "95.0" : 6575.0,
+                "99.0" : 6575.0,
+                "99.9" : 6575.0,
+                "99.99" : 6575.0,
+                "99.999" : 6575.0,
+                "99.9999" : 6575.0,
+                "100.0" : 6575.0
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    6575.0,
+                    1438.458,
+                    1352.416,
+                    3554.75,
+                    1696.292
+                ],
+                [
+                    546.042,
+                    456.833,
+                    383.25,
+                    356.791,
+                    536.833
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testMapStruct",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 3.5375,
+            "scoreError" : 1.2213189800746247,
+            "scoreConfidence" : [
+                2.3161810199253754,
+                4.758818980074625
+            ],
+            "scorePercentiles" : {
+                "0.0" : 2.708,
+                "50.0" : 3.1870000000000003,
+                "90.0" : 5.2173,
+                "95.0" : 5.334,
+                "99.0" : 5.334,
+                "99.9" : 5.334,
+                "99.99" : 5.334,
+                "99.999" : 5.334,
+                "99.9999" : 5.334,
+                "100.0" : 5.334
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    3.958,
+                    3.917,
+                    5.334,
+                    4.167,
+                    3.042
+                ],
+                [
+                    3.0,
+                    3.291,
+                    2.875,
+                    2.708,
+                    3.083
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testModelMapper",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 864.8707999999999,
+            "scoreError" : 669.2831520953822,
+            "scoreConfidence" : [
+                195.5876479046177,
+                1534.153952095382
+            ],
+            "scorePercentiles" : {
+                "0.0" : 426.917,
+                "50.0" : 672.3125,
+                "90.0" : 1651.5955000000001,
+                "95.0" : 1671.208,
+                "99.0" : 1671.208,
+                "99.9" : 1671.208,
+                "99.99" : 1671.208,
+                "99.999" : 1671.208,
+                "99.9999" : 1671.208,
+                "100.0" : 1671.208
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    568.792,
+                    514.125,
+                    519.75,
+                    620.625,
+                    426.917
+                ],
+                [
+                    724.0,
+                    1671.208,
+                    889.833,
+                    1238.375,
+                    1475.083
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testObjectMapper",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 100.90419999999999,
+            "scoreError" : 16.156462488508048,
+            "scoreConfidence" : [
+                84.74773751149195,
+                117.06066248850803
+            ],
+            "scorePercentiles" : {
+                "0.0" : 89.083,
+                "50.0" : 100.2295,
+                "90.0" : 122.18400000000001,
+                "95.0" : 123.459,
+                "99.0" : 123.459,
+                "99.9" : 123.459,
+                "99.99" : 123.459,
+                "99.999" : 123.459,
+                "99.9999" : 123.459,
+                "100.0" : 123.459
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    98.042,
+                    110.709,
+                    123.459,
+                    102.666,
+                    102.417
+                ],
+                [
+                    89.083,
+                    92.333,
+                    106.0,
+                    95.125,
+                    89.208
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testOrika",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 34.2417,
+            "scoreError" : 11.52440327088555,
+            "scoreConfidence" : [
+                22.71729672911445,
+                45.76610327088555
+            ],
+            "scorePercentiles" : {
+                "0.0" : 27.375,
+                "50.0" : 32.104,
+                "90.0" : 52.087500000000006,
+                "95.0" : 53.75,
+                "99.0" : 53.75,
+                "99.9" : 53.75,
+                "99.99" : 53.75,
+                "99.999" : 53.75,
+                "99.9999" : 53.75,
+                "100.0" : 53.75
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    29.75,
+                    32.542,
+                    27.375,
+                    31.666,
+                    28.208
+                ],
+                [
+                    36.958,
+                    53.75,
+                    37.125,
+                    34.459,
+                    30.584
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.cathaybk.demo.benchmark.MapperPerformanceBenchmark.testSpringBeanUtils",
+        "mode" : "ss",
+        "threads" : 1,
+        "forks" : 2,
+        "jvm" : "/Users/idahuang/Library/Java/JavaVirtualMachines/openjdk-24.0.2/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/idahuang/Applications/IntelliJ IDEA Community Edition.app/Contents/lib/idea_rt.jar=56695",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24.0.2",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24.0.2+12-54",
+        "warmupIterations" : 3,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "1 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 230.1168,
+            "scoreError" : 629.0923277351852,
+            "scoreConfidence" : [
+                -398.9755277351852,
+                859.2091277351852
+            ],
+            "scorePercentiles" : {
+                "0.0" : 62.5,
+                "50.0" : 87.0005,
+                "90.0" : 1286.6089000000004,
+                "95.0" : 1409.584,
+                "99.0" : 1409.584,
+                "99.9" : 1409.584,
+                "99.99" : 1409.584,
+                "99.999" : 1409.584,
+                "99.9999" : 1409.584,
+                "100.0" : 1409.584
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    131.792,
+                    1409.584,
+                    179.833,
+                    128.834,
+                    94.917
+                ],
+                [
+                    79.084,
+                    72.5,
+                    77.083,
+                    65.041,
+                    62.5
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    }
+]
+
+
