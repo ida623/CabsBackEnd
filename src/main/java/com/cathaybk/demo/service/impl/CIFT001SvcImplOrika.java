@@ -24,18 +24,21 @@ public class CIFT001SvcImplOrika implements CIFT001SvcOrika {
     public CIFT001SvcImplOrika(CustomerInfoRepository customerInfoRepository) {
         this.customerInfoRepository = customerInfoRepository;
 
-        // 初始化 Orika Mapper
+    // 初始化 Orika Mapper，管理映射配置
         MapperFactory factory = new DefaultMapperFactory.Builder()
-                .compilerStrategy(new EclipseJdtCompilerStrategy())  // 加上這一行
-                .useBuiltinConverters(false)
-                .build();
+                // 設定編譯策略為 EclipseJdtCompilerStrategy
+                // 從 JDK 9 開始，反射存取權限變得更嚴格，預設的 Javassist 直接產生位元碼會失敗
+                // 改用 Eclipse JDT 編譯器可以避免反射存取限制問題，確保 Orika 能正常運行
+                .compilerStrategy(new EclipseJdtCompilerStrategy())
+                .useBuiltinConverters(false)                        // 停用內建的型別轉換器
+                .build();                                           // 建立 MapperFactory 實例
 
-        // 註冊映射關係
+    // 定義「來源類別」到「目標類別」的映射規則
         factory.classMap(CIFT001TranrqData.class, CustomerInfoEntity.class)
-                .byDefault()
-                .register();
+                .byDefault()                                        // 使用預設映射規則：對應名稱相同的欄位
+                .register();                                        // 註冊映射關係
 
-        this.orikaMapper = factory.getMapperFacade();
+        this.orikaMapper = factory.getMapperFacade();               // 後續呼叫 orikaMapper.map() 可以進行物件轉換
     }
 
     @Override

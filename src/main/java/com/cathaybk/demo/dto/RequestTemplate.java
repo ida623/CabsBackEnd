@@ -17,7 +17,7 @@ public class RequestTemplate<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("MWHEADER")
-    private HEADER mwheader;
+    private MwHeader mwheader;
 
     @Valid
     @JsonProperty("TRANRQ")

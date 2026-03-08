@@ -138,5 +138,4 @@ public class SqlUtils {
         String orderByStr = String.join(",", orderBy);
         return sql.replace(replaceField, orderByStr);
     }
-
 }

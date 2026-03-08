@@ -1,23 +1,33 @@
 package com.cathaybk.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * EDU_C_CUSTQ001 根據客戶編號查詢客戶
+ * 下行電文包裝模板
+ *
+ * @author 00550396
+ * @param <T> TRANRS 類型
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ResponseTemplate<T> implements Serializable {
 
-    @Serial
+    /** serialVersionUID */
     private static final long serialVersionUID = 1L;
 
+    /** 電文表頭 */
     @JsonProperty("MWHEADER")
-    private HEADER mwheader;
+    private MwHeader mwheader;
 
+    /** 下行電文內容 */
     @JsonProperty("TRANRS")
     private T tranrs;
+
 }

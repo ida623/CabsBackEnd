@@ -1,0 +1,56 @@
+SELECT
+    C.EFORM_ID,
+    C.APID,
+    C.SYS_NAME,
+    C.BIA_LEVEL_ID,
+    TO_CHAR(C.EXECUTE_DATE, 'yyyy/MM/dd HH24:mi:ss') AS EXECUTE_DATE,
+    TO_CHAR(C.END_DATE, 'yyyy/MM/dd HH24:mi:ss') AS END_DATE,
+    C.CHANGE_DETAILS,
+    C.CHANGE_TYPE_ID,
+    C.RISK_ASSESSMENT_ID,
+    C.ATTRIBUTES_ID,
+    C.IS_DOWNTIME_REQUIRES,
+    C.IS_CHANGEDB,
+    C.IS_ANN,
+    C.PROGRAM_PHONE,
+    C.AFFECTED_NOTES,
+    C.CREATED_EMPID,
+    C.CREATED_PHONE_EXT,
+    C.CREATED_EMPNAME,
+    TO_CHAR(C.CREATED_DATE, 'yyyy/MM/dd HH24:mi:ss') AS CREATED_DATE,
+    C.CREATED_DEPT,
+    TO_CHAR(C.MODIFY_DATE, 'yyyy/MM/dd HH24:mi:ss') AS MODIFY_DATE,
+    C.HRI,
+    C.REVIEW_STATUS,
+    TO_CHAR(C.REVIEW_DATE, 'yyyy/MM/dd HH24:mi:ss') AS REVIEW_DATE,
+    C.REVIEW_MODIFY_EMPID,
+    TO_CHAR(C.REVIEW_MODIFY_TIME, 'yyyy/MM/dd HH24:mi:ss') AS REVIEW_MODIFY_TIME,
+    C.IS_AI_CAB,
+    C.AI_CAB_EFORM_ID,
+    C.IS_ACTIVE,
+    NVL(RL.AFTER_STATUS, 'N') AS STATUS
+FROM CAB_CHANGE_REQUEST C
+LEFT JOIN (
+    SELECT EFORM_ID, AFTER_STATUS
+    FROM (
+        SELECT
+            L.EFORM_ID,
+            L.AFTER_STATUS,
+            ROW_NUMBER() OVER (
+                PARTITION BY L.EFORM_ID
+                ORDER BY L.ACTION_AT DESC, L.ID DESC
+            ) AS RN
+        FROM RELEASE_ACTION_LOG L
+    )
+    WHERE RN = 1
+) RL
+    ON RL.EFORM_ID = C.EFORM_ID
+WHERE 1=1
+    [ AND C.EFORM_ID = :eformId ]
+    [ AND C.BIA_LEVEL_ID = :biaLevelId ]
+    [ AND C.EXECUTE_DATE >= TO_TIMESTAMP(:executeDate, 'yyyy/MM/dd HH24:mi:ss') ]
+    [ AND C.EXECUTE_DATE <= TO_TIMESTAMP(:endDate, 'yyyy/MM/dd HH24:mi:ss') ]
+    [ AND C.CHANGE_TYPE_ID = :changeTypeId ]
+    [ AND C.ATTRIBUTES_ID = :attributesId ]
+    [ AND C.CREATED_EMPNAME = :createdEmpName ]
+    [ AND C.CREATED_DEPT LIKE '%' || :createdDept || '%' ]
