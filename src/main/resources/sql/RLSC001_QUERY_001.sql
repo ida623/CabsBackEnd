@@ -1,0 +1,21 @@
+SELECT
+    C.EFORM_ID,
+    NVL(RL.AFTER_STATUS, 'N') AS STATUS
+FROM CAB_CHANGE_REQUEST C
+LEFT JOIN (
+    SELECT EFORM_ID, AFTER_STATUS
+    FROM (
+        SELECT
+            L.EFORM_ID,
+            L.AFTER_STATUS,
+            ROW_NUMBER() OVER (
+                PARTITION BY L.EFORM_ID
+                ORDER BY L.ACTION_AT DESC, L.ID DESC
+            ) AS RN
+        FROM RELEASE_ACTION_LOG L
+    )
+    WHERE RN = 1
+) RL
+    ON RL.EFORM_ID = C.EFORM_ID
+WHERE C.EFORM_ID IN ( :eformIds )
+ORDER BY C.EFORM_ID ASC

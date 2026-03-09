@@ -1,0 +1,11 @@
+SELECT
+    COUNT(1) OVER() AS totalElements,
+    A.ID,
+    A.CONTENT,
+    A.CREATED_BY,
+    A.CREATED_AT,
+    A.UPDATED_BY,
+    A.UPDATED_AT
+FROM ANNOUNCEMENT A
+[ORDER BY UPDATED_AT :sortDirection]
+OFFSET :offset ROWS FETCH NEXT :pageSize ROWS ONLY

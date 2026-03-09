@@ -1,36 +1,30 @@
 package com.cathaybk.demo.entity;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * RELEASE_ACTION_LOG 放行處理結果紀錄
  *
- * @author 00550396
+ * @author System
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "RELEASE_ACTION_LOG")
 public class ReleaseActionLogEntity implements Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /** ID */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RELEASE_ACTION_LOG_SEQ_GEN")
+    @SequenceGenerator(name = "RELEASE_ACTION_LOG_SEQ_GEN", sequenceName = "RELEASE_ACTION_LOG_SEQ", allocationSize = 1)
     @Column(name = "ID")
     private Long id;
 
@@ -39,39 +33,38 @@ public class ReleaseActionLogEntity implements Serializable {
     private String eformId;
 
     /** 動作類型 */
-    @Column(name = "ACTION_TYPE", length = 20)
+    @Column(name = "ACTION_TYPE", length = 10)
     private String actionType;
 
-    /** 變更前狀態 */
+    /** 請求來源 */
+    @Column(name = "REQUEST_SOURCE", length = 10)
+    private String requestSource;
+
+    /** 處理前狀態 */
     @Column(name = "BEFORE_STATUS", length = 10)
     private String beforeStatus;
 
-    /** 變更後狀態 */
+    /** 處理後狀態 */
     @Column(name = "AFTER_STATUS", length = 10)
     private String afterStatus;
 
-    /** 操作人 */
+    /** 操作者 */
     @Column(name = "ACTION_BY", length = 50)
     private String actionBy;
 
-    /** 請求來源 */
-    @Column(name = "REQUEST_SOURCE", length = 50)
-    private String requestSource;
-
     /** 操作時間 */
     @Column(name = "ACTION_AT")
-    private LocalDateTime actionAt;
+    private Timestamp actionAt;
 
-    /** 核准時間 */
-    @Column(name = "APPROVED_AT")
-    private LocalDateTime approvedAt;
+    /** 審核完成時間 */
+    @Column(name = "APPROVED_AT", length = 8)
+    private String approvedAt;
 
-    /** iContact 參考狀態 */
+    /** iContact回寫狀態 */
     @Column(name = "ICONTACT_REF_STATUS", length = 10)
-    private String icontactRefStatus;
+    private String iContactRefStatus;
 
-    /** iContact 參考訊息 */
+    /** iContact回寫訊息 */
     @Column(name = "ICONTACT_REF_MESSAGE", length = 500)
-    private String icontactRefMessage;
-
+    private String iContactRefMessage;
 }
