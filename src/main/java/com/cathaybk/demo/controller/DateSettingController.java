@@ -1,69 +1,70 @@
 package com.cathaybk.demo.controller;
 
-import java.io.IOException;
-
 import com.cathaybk.demo.dto.*;
 import com.cathaybk.demo.exception.DataNotFoundException;
 import com.cathaybk.demo.exception.RequestValidException;
 import com.cathaybk.demo.exception.RestException;
+import com.cathaybk.demo.factory.NormalResponseFactory;
 import com.cathaybk.demo.service.DATC001Svc;
 import com.cathaybk.demo.service.DATQ001Svc;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-
 @RestController
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping(value = "/api/date-setting-windows", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-public class DateSettingController extends BaseController {
+@RequestMapping("/api/date-setting-windows")
+@RequiredArgsConstructor
+public class DateSettingWindowsController extends BaseController {
 
-    /** DATC001Svc */
-    private final DATC001Svc theDatc001Svc;
+    /** NormalResponseFactory */
+    private final NormalResponseFactory normalResponseFactory;
 
-    /** DATQ001Svc */
-    private final DATQ001Svc theDatq001Svc;
+    /**CABS-B-DATQ001 查詢日期設定 */
+    private final DATQ001Svc datq001Svc;
+
+    /** CABS-B-DATC001 新增日期設定 */
+    private final DATC001Svc datc001Svc;
+
+    /**
+     * CABS-B-DATQ001 查詢日期設定
+     * 查詢最新日期設定
+     *
+     * @param req 請求物件
+     * @return 日期設定資料
+     * @throws DataNotFoundException 查無資料時拋出
+     */
+    @PostMapping("/queryLatest")
+    public ResponseTemplate<DATQ001Tranrs> queryDateSettings(@RequestBody
+                                                             RequestTemplate<EmptyTranrq> req) throws DataNotFoundException {
+
+        DATQ001Tranrs tranrs = datq001Svc.queryDateSettings(req.getTranrq());
+
+        return normalResponseFactory.genNormalResponse(tranrs, req);
+    }
 
     /**
      * CABS-B-DATC001 新增日期設定
      *
-     * @param req
-     * @param err
-     * @return
+     * @param req 請求物件
+     * @return 日期設定資料
+     * @throws DataNotFoundException 查無資料時拋出
      * @throws RestException
      * @throws RequestValidException
-     * @throws IOException
      */
     @PostMapping("/create")
-    @Operation(summary = "CABS-B-DATC001 新增日期設定")
-    public ResponseTemplate<EmptyTranrs> createDateSetting(
-            @Valid @RequestBody RequestTemplate<DATC001Tranrq> req, Errors err)
-            throws RestException, RequestValidException, IOException {
-        validateRequest(err);
-        return theDatc001Svc.createDateSetting(req);
+    public ResponseTemplate<EmptyTranrs> createDateSettings(@Valid
+                                                            @RequestBody
+                                                            RequestTemplate<DATC001Tranrq> req, Errors errors) throws DataNotFoundException, RestException, RequestValidException {
+
+        validateRequest(req, errors);
+
+        EmptyTranrs tranrs = datc001Svc.createDateSettings(req.getTranrq());
+
+        return normalResponseFactory.genNormalResponse(tranrs, req);
     }
 
-    /**
-     * CABS-B-DATQ001 查詢日期設定
-     *
-     * @param req
-     * @return
-     * @throws DataNotFoundException
-     * @throws IOException
-     * @throws RestException
-     */
-    @PostMapping("/queryLatest")
-    @Operation(summary = "CABS-B-DATQ001 查詢日期設定")
-    public ResponseTemplate<DATQ001Tranrs> queryLatestDateSetting(
-            @RequestBody RequestTemplate<EmptyTranrq> req)
-            throws DataNotFoundException, IOException, RestException {
-        return theDatq001Svc.queryLatestDateSetting(req);
-    }
 }

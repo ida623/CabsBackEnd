@@ -1,125 +1,149 @@
 package com.cathaybk.demo.controller;
 
-import java.io.IOException;
-
 import com.cathaybk.demo.dto.*;
 import com.cathaybk.demo.exception.DataNotFoundException;
 import com.cathaybk.demo.exception.RequestValidException;
 import com.cathaybk.demo.exception.RestException;
+import com.cathaybk.demo.factory.NormalResponseFactory;
 import com.cathaybk.demo.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import java.io.IOException;
 
 @RestController
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping(value = "/api/announcements", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping("/api/announcements")
+@RequiredArgsConstructor
 public class AnnouncementController extends BaseController {
 
-    /** ANNC001Svc */
-    private final ANNC001Svc theANNC001Svc;
+    /** NormalResponseFactory */
+    private final NormalResponseFactory normalResponseFactory;
 
-    /** ANNQ001Svc */
-    private final ANNQ001Svc theANNQ001Svc;
+    /** CABS-B-ANNC001 新增公告 */
+    private final ANNC001Svc annc001Svc;
 
-    /** ANNQ002Svc */
-    private final ANNQ002Svc theANNQ002Svc;
+    /** CABS-B-ANND001 刪除公告 */
+    private final ANND001Svc annd001Svc;
 
-    /** ANNU001Svc */
-    private final ANNU001Svc theANNU001Svc;
+    /** CABS-B-ANNQ001 查詢公告清單 */
+    private final ANNQ001Svc annq001Svc;
 
-    /** ANND001Svc */
-    private final ANND001Svc theANND001Svc;
+    /** CABS-B-ANNQ002 查詢公告 */
+    private final ANNQ002Svc annq002Svc;
+
+    /** CABS-B-ANNU001 修改公告 */
+    private final ANNU001Svc annu001Svc;
 
     /**
      * CABS-B-ANNC001 新增公告
      *
-     * @param req
-     * @return
-     * @throws IOException
-     * @throws RestException
-     * @throws RequestValidException
+     * @param req    請求物件
+     * @param errors 驗證結果
+     * @return 空下行
+     * @throws RestException         未取得使用者資訊時拋出
+     * @throws RequestValidException 欄位驗證失敗時拋出
      */
     @PostMapping("/create")
-    @Operation(summary = "CABS-B-ANNC001 新增公告")
-    public ResponseTemplate<EmptyTranrs> create(@Valid @RequestBody RequestTemplate<ANNC001Tranrq> req, Errors err)
-            throws IOException, RestException, RequestValidException {
-        validateRequest(err);
-        return theANNC001Svc.createAnnouncement(req);
-    }
+    public ResponseTemplate<EmptyTranrs> createAnnouncement(
+            @Valid @RequestBody RequestTemplate<ANNC001Tranrq> req,
+            Errors errors) throws RestException, RequestValidException {
 
-    /**
-     * CABS-B-ANNQ001 查詢公告清單
-     *
-     * @param req
-     * @return
-     * @throws IOException
-     * @throws RequestValidException
-     */
-    @PostMapping("/queryList")
-    @Operation(summary = "CABS-B-ANNQ001 查詢公告清單")
-    public ResponseTemplate<ANNQ001Tranrs> queryList(@Valid @RequestBody RequestTemplate<ANNQ001Tranrq> req, Errors err)
-            throws IOException, RequestValidException {
-        validateRequest(err);
-        return theANNQ001Svc.queryList(req);
-    }
+        validateRequest(req, errors);
 
-    /**
-     * CABS-B-ANNQ002 查詢公告
-     *
-     * @param req
-     * @return
-     * @throws DataNotFoundException
-     * @throws RequestValidException
-     */
-    @PostMapping("/query")
-    @Operation(summary = "CABS-B-ANNQ002 查詢公告")
-    public ResponseTemplate<ANNQ002Tranrs> query(@Valid @RequestBody RequestTemplate<ANNQ002Tranrq> req, Errors err)
-            throws DataNotFoundException, RequestValidException {
-        validateRequest(err);
-        return theANNQ002Svc.query(req);
-    }
+        EmptyTranrs tranrs = annc001Svc.createAnnouncement(req.getTranrq());
 
-    /**
-     * CABS-B-ANNU001 修改公告
-     *
-     * @param req
-     * @return
-     * @throws DataNotFoundException
-     * @throws RestException
-     * @throws RequestValidException
-     */
-    @PostMapping("/update")
-    @Operation(summary = "CABS-B-ANNU001 修改公告")
-    public ResponseTemplate<EmptyTranrs> update(@Valid @RequestBody RequestTemplate<ANNU001Tranrq> req, Errors err)
-            throws DataNotFoundException, RestException, RequestValidException {
-        validateRequest(err);
-        return theANNU001Svc.update(req);
+        return normalResponseFactory.genNormalResponse(tranrs, req);
     }
 
     /**
      * CABS-B-ANND001 刪除公告
      *
-     * @param req
-     * @return
-     * @throws DataNotFoundException
-     * @throws RestException
-     * @throws RequestValidException
+     * @param req    請求物件
+     * @param errors 驗證結果
+     * @return 空下行
+     * @throws RestException         未取得使用者資訊時拋出
+     * @throws DataNotFoundException 查無資料時拋出
+     * @throws RequestValidException 欄位驗證失敗時拋出
      */
     @PostMapping("/delete")
-    @Operation(summary = "CABS-B-ANND001 刪除公告")
-    public ResponseTemplate<EmptyTranrs> delete(@Valid @RequestBody RequestTemplate<ANND001Tranrq> req, Errors err)
-            throws DataNotFoundException, RestException, RequestValidException {
-        validateRequest(err);
-        return theANND001Svc.delete(req);
+    public ResponseTemplate<EmptyTranrs> deleteAnnouncement(
+            @Valid @RequestBody RequestTemplate<ANND001Tranrq> req,
+            Errors errors) throws RestException, DataNotFoundException, RequestValidException {
+
+        validateRequest(req, errors);
+
+        EmptyTranrs tranrs = annd001Svc.deleteAnnouncement(req.getTranrq());
+
+        return normalResponseFactory.genNormalResponse(tranrs, req);
+    }
+
+    /**
+     * CABS-B-ANNQ001 查詢公告清單
+     *
+     * @param req    請求物件
+     * @param errors 驗證結果
+     * @return 公告清單（分頁）
+     * @throws IOException           SQL 讀取失敗時拋出
+     * @throws RequestValidException 欄位驗證失敗時拋出
+     */
+    @PostMapping("/queryList")
+    public ResponseTemplate<ANNQ001Tranrs> queryAnnouncementList(
+            @Valid @RequestBody RequestTemplate<ANNQ001Tranrq> req,
+            Errors errors) throws IOException, RequestValidException {
+
+        validateRequest(req, errors);
+
+        ANNQ001Tranrs tranrs = annq001Svc.queryAnnouncementList(req.getTranrq());
+
+        return normalResponseFactory.genNormalResponse(tranrs, req);
+    }
+
+    /**
+     * CABS-B-ANNQ002 查詢公告（單筆）
+     *
+     * @param req    請求物件
+     * @param errors 驗證結果
+     * @return 公告單筆資料
+     * @throws DataNotFoundException 查無資料時拋出
+     * @throws RequestValidException 欄位驗證失敗時拋出
+     */
+    @PostMapping("/query")
+    public ResponseTemplate<ANNQ002Tranrs> queryAnnouncement(
+            @Valid @RequestBody RequestTemplate<ANNQ002Tranrq> req,
+            Errors errors) throws DataNotFoundException, RequestValidException {
+
+        validateRequest(req, errors);
+
+        ANNQ002Tranrs tranrs = annq002Svc.queryAnnouncement(req.getTranrq());
+
+        return normalResponseFactory.genNormalResponse(tranrs, req);
+    }
+
+    /**
+     * CABS-B-ANNU001 修改公告
+     *
+     * @param req    請求物件
+     * @param errors 驗證結果
+     * @return 空下行
+     * @throws RestException         未取得使用者資訊時拋出
+     * @throws DataNotFoundException 查無資料時拋出
+     * @throws RequestValidException 欄位驗證失敗時拋出
+     */
+    @PostMapping("/update")
+    public ResponseTemplate<EmptyTranrs> updateAnnouncement(
+            @Valid @RequestBody RequestTemplate<ANNU001Tranrq> req,
+            Errors errors) throws RestException, DataNotFoundException, RequestValidException {
+
+        validateRequest(req, errors);
+
+        EmptyTranrs tranrs = annu001Svc.updateAnnouncement(req.getTranrq());
+
+        return normalResponseFactory.genNormalResponse(tranrs, req);
     }
 
 }

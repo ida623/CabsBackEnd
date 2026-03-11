@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 /**
  * CABS-B-ANNQ001 查詢公告清單
  * 上行／請求電文
- *
  * @author
  */
 @Data

@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * CABS-B-RLSC001 放行處理 上行／請求電文
- *
  * @author System
  */
 @Data

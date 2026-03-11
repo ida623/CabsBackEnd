@@ -4,7 +4,6 @@ import java.io.Serial;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -12,10 +11,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * CABS-B-ANNC001 新增公告
+ * CABS-B-ANNC001 新增公告 上行
  * 上行／請求電文
  *
- * @author 張育誠
+ * @author
  */
 @Data
 @NoArgsConstructor
@@ -27,8 +26,8 @@ public class ANNC001Tranrq implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 公告內容 */
-    @NotBlank(message = "公告內容 不得為空")
-    @Size(max = 1000, message = "公告內容 最大長度為1000")
+    @NotBlank(message = "公告內容不可為空")
+    @Size(max = 1000, message = "公告內容長度不可超過 1000")
     @JsonProperty("content")
     private String content;
 

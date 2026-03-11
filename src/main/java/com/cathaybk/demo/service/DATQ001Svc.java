@@ -11,10 +11,9 @@ import java.io.IOException;
 
 /**
  * CABS-B-DATQ001 查詢日期設定
- *
  * @author system
  */
 public interface DATQ001Svc {
-    ResponseTemplate<DATQ001Tranrs> queryLatestDateSetting(RequestTemplate<EmptyTranrq> req)
-            throws IOException, DataNotFoundException, RestException;
+
+    DATQ001Tranrs queryDateSettings(EmptyTranrq tranrq) throws DataNotFoundException;
 }

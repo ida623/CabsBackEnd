@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 /**
  * CABS-B-ANNQ001 查詢公告清單
  * 下行/回應電文
- *
  * @author
  */
 @Data

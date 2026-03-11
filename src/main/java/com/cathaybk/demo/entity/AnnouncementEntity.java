@@ -1,8 +1,7 @@
 package com.cathaybk.demo.entity;
 
-import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,21 +12,14 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-/**
- * ANNOUNCEMENT 公告明細主檔
- *
- * @author
- */
-@Data
 @Entity
+@Data
 @Table(name = "ANNOUNCEMENT")
 public class AnnouncementEntity implements Serializable {
 
-    /** serialVersionUID */
-    @Serial
     private static final long serialVersionUID = 1L;
 
-    /** 公告 ID */
+    /** 主鍵ID */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ANNOUNCEMENT_SEQ_GEN")
     @SequenceGenerator(
@@ -35,27 +27,27 @@ public class AnnouncementEntity implements Serializable {
             sequenceName = "ANNOUNCEMENT_SEQ",
             allocationSize = 1
     )
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false, precision = 19)
     private Long id;
 
     /** 公告內容 */
-    @Column(name = "CONTENT", length = 1000, nullable = false)
+    @Column(name = "CONTENT", nullable = false, length = 1000)
     private String content;
 
-    /** 建立者 */
-    @Column(name = "CREATED_BY", length = 100)
+    /** 建立者姓名 */
+    @Column(name = "CREATED_BY", nullable = false, length = 50)
     private String createdBy;
 
     /** 建立時間 */
-    @Column(name = "CREATED_AT")
-    private Timestamp createdAt;
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    /** 更新者 */
-    @Column(name = "UPDATED_BY", length = 100)
+    /** 最後異動者姓名 */
+    @Column(name = "UPDATED_BY", nullable = false, length = 50)
     private String updatedBy;
 
-    /** 更新時間 */
-    @Column(name = "UPDATED_AT")
-    private Timestamp updatedAt;
+    /** 最後異動時間 */
+    @Column(name = "UPDATED_AT", nullable = false)
+    private LocalDateTime updatedAt;
 
 }

@@ -10,11 +10,10 @@ import java.io.IOException;
 
 /**
  * CABS-B-RLSQ001 產生放行清單
- *
  * @author System
  */
 public interface RLSQ001Svc {
 
-    ResponseTemplate<RLSQ001Tranrs> preview(RequestTemplate<RLSQ001Tranrq> req)
-            throws IOException, RestException;
+    RLSQ001Tranrs previewReleaseList(RLSQ001Tranrq tranrq) throws IOException;
+
 }

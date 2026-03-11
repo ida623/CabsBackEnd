@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 /**
  * CABS-B-ANNQ002 查詢公告
  * 下行/回應電文
- *
  * @author
  */
 @Data
@@ -36,7 +35,7 @@ public class ANNQ002Tranrs implements Serializable {
     @JsonProperty("createdBy")
     private String createdBy;
 
-    /** 建立時間 */
+    /** 建立時間（yyyy/MM/dd HH:mm:ss） */
     @JsonProperty("createdAt")
     private String createdAt;
 
@@ -44,7 +43,7 @@ public class ANNQ002Tranrs implements Serializable {
     @JsonProperty("updatedBy")
     private String updatedBy;
 
-    /** 最後異動時間 */
+    /** 最後異動時間（yyyy/MM/dd HH:mm:ss） */
     @JsonProperty("updatedAt")
     private String updatedAt;
 

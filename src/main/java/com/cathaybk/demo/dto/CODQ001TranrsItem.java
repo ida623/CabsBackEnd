@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 /**
  * CABS-B-CODQ001 代碼查詢
  * 下行/回應電文 - 項目
- *
- * @author
  */
 @Data
 @NoArgsConstructor
